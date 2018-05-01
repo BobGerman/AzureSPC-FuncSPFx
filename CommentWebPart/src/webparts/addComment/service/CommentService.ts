@@ -13,6 +13,6 @@ export default class MockCommentService implements ICommentService {
 
         return new Promise<void> ((resolve) => {
             resolve();
-        })
+        });
     }
 }

@@ -15,22 +15,32 @@ import { ICommentService } from './service/ICommentService';
 import { CommentServiceFactory } from './service/CommentServiceFactory';
 
 export interface IAddCommentWebPartProps {
+  title: string;
   description: string;
+  clientId: string;
+  endpointUrl: string;
 }
 
 export default class AddCommentWebPart extends BaseClientSideWebPart<IAddCommentWebPartProps> {
 
   public render(): void {
     const svc = CommentServiceFactory.getCommentService(Environment.type);
+    const message = "";
 
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
       AddComment,
       {
-        title: "TITLE",
+        title: this.properties.title,
         description: this.properties.description,
-        message: "MESSAGE",
-        onAddComment: (comment) => {svc.addComment(null, null, null, null, {text:"Mock"});}
-      }
+        message: message,
+        onAddComment: (comment) => {
+          svc.addComment(
+            this.context, this.context.serviceScope,
+            this.properties.clientId, this.properties.endpointUrl,
+            {text: comment}
+          );
+        }
+      },
     );
 
     ReactDom.render(element, this.domElement);
@@ -51,11 +61,25 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
             {
               groupName: strings.BasicGroupName,
               groupFields: [
+                PropertyPaneTextField('title', {
+                  label: strings.TitleFieldLabel
+                }),
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
                 })
               ]
-            }
+            },
+            {
+              groupName: strings.ServiceGroupName,
+              groupFields: [
+                PropertyPaneTextField('clientId', {
+                  label: strings.ClientIdFieldLabel
+                }),
+                PropertyPaneTextField('endpointUrl', {
+                  label: strings.EndpointUrlFieldLabel
+                })
+              ]
+            }            
           ]
         }
       ]

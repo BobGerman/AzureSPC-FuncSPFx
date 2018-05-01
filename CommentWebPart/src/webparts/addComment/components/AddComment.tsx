@@ -17,7 +17,7 @@ export default class AddComment extends React.Component<IAddCommentProps, {}> {
               <div className={ styles.title }>{escape(this.props.title)}</div>
               <div className={ styles.description }>{escape(this.props.description)}</div>
               <p>
-                <input ref={(elt) => { this.inputElement = elt}} />&nbsp;&nbsp;&nbsp;
+                <input ref={(elt) => { this.inputElement = elt; }} />&nbsp;&nbsp;&nbsp;
                 <button onClick={ this.onAdd.bind(this) } className={ styles.button }>Add</button>&nbsp;
                 <button onClick={ this.onCancel.bind(this) } className={ styles.button2 }>Cancel</button>
               </p>

@@ -12,8 +12,8 @@ export default class MockCommentService implements ICommentService {
                       comment: IComment) : Promise<void | string> {
 
         return new Promise<void> ((resolve) => {
-            alert('Mock service');
+            alert(`Mock service adding comment ${comment.text}`);
             resolve();
-        })
+        });
     }
 }
