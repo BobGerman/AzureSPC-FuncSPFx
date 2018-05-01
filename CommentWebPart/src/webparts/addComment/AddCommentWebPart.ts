@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import { Version, Environment } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
@@ -10,6 +10,9 @@ import {
 import * as strings from 'AddCommentWebPartStrings';
 import AddComment from './components/AddComment';
 import { IAddCommentProps } from './components/IAddCommentProps';
+import { IComment } from './model/IComment';
+import { ICommentService } from './service/ICommentService';
+import { CommentServiceFactory } from './service/CommentServiceFactory';
 
 export interface IAddCommentWebPartProps {
   description: string;
@@ -18,13 +21,15 @@ export interface IAddCommentWebPartProps {
 export default class AddCommentWebPart extends BaseClientSideWebPart<IAddCommentWebPartProps> {
 
   public render(): void {
+    const svc = CommentServiceFactory.getCommentService(Environment.type);
+
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
       AddComment,
       {
         title: "TITLE",
         description: this.properties.description,
         message: "MESSAGE",
-        onAddComment: (comment) => {alert(comment);}
+        onAddComment: (comment) => {svc.addComment(null, null, null, null, {text:"Mock"});}
       }
     );
 
