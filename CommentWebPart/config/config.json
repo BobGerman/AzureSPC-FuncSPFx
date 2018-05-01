@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "add-comment-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/addComment/AddCommentWebPart.js",
+          "manifest": "./src/webparts/addComment/AddCommentWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "AddCommentWebPartStrings": "lib/webparts/addComment/loc/{locale}.js"
+  }
+}

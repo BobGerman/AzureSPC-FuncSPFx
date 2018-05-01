@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "comment-web-part-client-side-solution",
+    "id": "a0f0d08c-b5be-4d47-a7a3-54c57dc3b20d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/comment-web-part.sppkg"
+  }
+}

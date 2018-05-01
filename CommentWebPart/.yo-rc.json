@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "comment-web-part",
+    "libraryId": "a0f0d08c-b5be-4d47-a7a3-54c57dc3b20d",
+    "environment": "spo"
+  }
+}
