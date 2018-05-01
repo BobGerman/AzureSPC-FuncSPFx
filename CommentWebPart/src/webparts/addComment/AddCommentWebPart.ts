@@ -21,7 +21,10 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
       AddComment,
       {
-        description: this.properties.description
+        title: "TITLE",
+        description: this.properties.description,
+        message: "MESSAGE",
+        onAddComment: (comment) => {alert(comment);}
       }
     );
 
