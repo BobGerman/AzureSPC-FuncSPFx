@@ -1,38 +1,61 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import styles from './AddComment.module.scss';
 import { IAddCommentProps } from './IAddCommentProps';
+import { IAddCommentState } from './IAddCommentState';
 import { escape } from '@microsoft/sp-lodash-subset';
 
-export default class AddComment extends React.Component<IAddCommentProps, {}> {
+import AddCommentForm from './AddCommentForm';
+import { IAddCommentFormProps } from './IAddCommentFormProps';
+import { IComment } from '../model/IComment';
+import { ICommentService } from '../service/ICommentService';
+
+export default class AddComment extends React.Component<IAddCommentProps, IAddCommentState> {
 
   private inputElement: HTMLInputElement;
 
+  constructor () {
+    super();
+    this.state = {
+      commentText: "",
+      message: ""
+    };
+  }
+
   public render(): React.ReactElement<IAddCommentProps> {
     return (
-      <div className={ styles.addComment }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <div className={ styles.title }>{escape(this.props.title)}</div>
-              <div className={ styles.description }>{escape(this.props.description)}</div>
-              <p>
-                <input ref={(elt) => { this.inputElement = elt; }} />&nbsp;&nbsp;&nbsp;
-                <button onClick={ this.onAdd.bind(this) } className={ styles.button }>Add</button>&nbsp;
-                <button onClick={ this.onCancel.bind(this) } className={ styles.button2 }>Cancel</button>
-              </p>
-            </div>
-          </div>
-        </div>
+      <div>
+        <AddCommentForm title={ this.props.title } 
+                        description={ this.props.description }
+                        commentText={ this.state.commentText }
+                        onAddComment={ (c) => {
+                          if (c) {
+                            this.props.commentService.addComment(
+                              this.props.context, this.props.serviceScope,
+                              this.props.clientId, this.props.endpointUrl,
+                              { text: c }
+                            )
+                            .then(() => {
+                              alert("OK");
+                              this.setState({
+                                commentText: "",
+                                message: "Your comment has been posted"
+                              });
+                            })
+                            .catch((error) => {
+                              alert(error);
+                              this.setState({
+                                commentText: c,
+                                message: `ERROR ${escape(error)}`
+                              });
+                            });
+                          } else {
+                            this.setState ( {...this.state, message: "Please enter a comment"});
+                          }
+                        }
+                      }
+                      message={ this.state.message } />
       </div>
     );
   }
 
-  
-  private onAdd() {
-    this.props.onAddComment(this.inputElement.value);
-  }
-  private onCancel() {
-  
-  }
 }

@@ -1,6 +1,14 @@
+import { IWebPartContext } from '@microsoft/sp-webpart-base';
+import { ServiceScope } from '@microsoft/sp-core-library';
+import { ICommentService } from '../service/ICommentService';
+
 export interface IAddCommentProps {
-  title: string;
-  description: string;
-  onAddComment: (comment: string) => void;
-  message: string;
-}
+    context: IWebPartContext;
+    serviceScope: ServiceScope;
+    commentService: ICommentService;
+    title: string;
+    description: string;
+    clientId: string;
+    endpointUrl: string;
+  }
+  

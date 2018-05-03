@@ -28,25 +28,15 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
     const message = "";
 
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
-      AddComment,
-      {
+      AddComment, {
+        context: this.context,
+        serviceScope: this.context.serviceScope,
+        commentService: svc,
         title: this.properties.title,
         description: this.properties.description,
-        message: message,
-        onAddComment: (comment) => {
-          svc.addComment(
-            this.context, this.context.serviceScope,
-            this.properties.clientId, this.properties.endpointUrl,
-            {text: comment}
-          )
-          .then(() => {
-            alert('OK');
-          })
-          .catch((error) => {
-            alert(error);
-          })
-        }
-      },
+        clientId: this.properties.clientId,
+        endpointUrl: this.properties.endpointUrl
+      }
     );
 
     ReactDom.render(element, this.domElement);
