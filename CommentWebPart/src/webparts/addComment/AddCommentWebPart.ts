@@ -38,7 +38,13 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
             this.context, this.context.serviceScope,
             this.properties.clientId, this.properties.endpointUrl,
             {text: comment}
-          );
+          )
+          .then(() => {
+            alert('OK');
+          })
+          .catch((error) => {
+            alert(error);
+          })
         }
       },
     );

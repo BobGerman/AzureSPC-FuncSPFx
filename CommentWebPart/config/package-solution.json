@@ -4,7 +4,14 @@
     "name": "comment-web-part-client-side-solution",
     "id": "a0f0d08c-b5be-4d47-a7a3-54c57dc3b20d",
     "version": "1.0.0.0",
-    "includeClientSideAssets": true
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "webApiPermissionRequests": [
+      {
+        "resource": "SPC-AuthenticatedFunctions",
+        "scope": "user_impersonation"
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/comment-web-part.sppkg"
