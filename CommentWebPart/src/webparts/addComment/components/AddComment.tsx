@@ -35,14 +35,12 @@ export default class AddComment extends React.Component<IAddCommentProps, IAddCo
                               { text: c }
                             )
                             .then(() => {
-                              alert("OK");
                               this.setState({
                                 commentText: "",
                                 message: "Your comment has been posted"
                               });
                             })
                             .catch((error) => {
-                              alert(error);
                               this.setState({
                                 commentText: c,
                                 message: `ERROR ${escape(error)}`
