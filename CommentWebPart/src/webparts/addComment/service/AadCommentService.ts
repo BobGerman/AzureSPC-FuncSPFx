@@ -18,11 +18,18 @@ export default class AadCommentService implements ICommentService {
                       endpointUrl: string,
                       comment: IComment) : Promise<void | string> {
 
-        var aadClient : AadHttpClient =
+        const temp: HTMLAnchorElement = document.createElement("a");
+        temp.href = context.pageContext.web.absoluteUrl;
+
+        const siteId = temp.hostname + "," +
+                     context.pageContext.site.id + "," +
+                     context.pageContext.web.id;
+
+                     var aadClient : AadHttpClient =
             new AadHttpClient(serviceScope, clientId);
 
-        var body: ICommentServiceBody = {
-            "siteId": "bgtest18.sharepoint.com,e35205f3-2461-4083-8ba0-da6ef589a781,64aaa6bd-ecf3-4c9d-9a60-4f56cffed7b5",
+        const body: ICommentServiceBody = {
+            "siteId": siteId,
             "comment": comment.text,
             "username": "Bob"
         };
