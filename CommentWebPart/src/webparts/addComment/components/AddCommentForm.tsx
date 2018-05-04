@@ -27,8 +27,11 @@ export default class AddComment extends React.Component<IAddCommentFormProps, { 
                        ref={(elt) => { this.inputElement = elt; }}
                        onChange={e => this.props.onChangeComment(e.target.value) }
                        />&nbsp;&nbsp;&nbsp;
-                <button onClick={ this.onAdd.bind(this) } className={ styles.button }>Add</button>&nbsp;
-                <button onClick={ this.onCancel.bind(this) } className={ styles.button2 }>Cancel</button>
+                <button onClick={ () => {
+                          this.props.onAddComment(this.inputElement.value);
+                        } }
+                        className={ styles.button }>Add</button>&nbsp;
+                <button onClick={ this.props.onCancel } className={ styles.button2 }>Cancel</button>
               </p>
               <div>{this.props.message}</div>
             </div>
@@ -36,13 +39,5 @@ export default class AddComment extends React.Component<IAddCommentFormProps, { 
         </div>
       </div>
     );
-  }
-
-  
-  private onAdd() {
-    this.props.onAddComment(this.inputElement.value);
-  }
-  private onCancel() {
-    this.props.onCancel();
   }
 }
