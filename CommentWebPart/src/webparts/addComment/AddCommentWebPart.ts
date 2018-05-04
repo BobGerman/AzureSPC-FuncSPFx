@@ -36,7 +36,7 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
         commentService: svc,
         title: this.properties.title,
         description: this.properties.description,
-        clientId: this.properties.clientId,
+        clientId: this.properties.clientId || this.properties.functionCode,
         endpointUrl: this.properties.endpointUrl
       }
     );

@@ -7,14 +7,13 @@ import { AadHttpClient } from '@microsoft/sp-http';
 interface ICommentServiceBody {
     siteId: string;
     comment: string;
-    username: string;
 }
 
 export default class AadCommentService implements ICommentService {
 
     public addComment(context: IWebPartContext,
                       serviceScope: ServiceScope,
-                      clientId: string,
+                      clientOrFunctionId: string,
                       endpointUrl: string,
                       comment: IComment) : Promise<void | string> {
 
@@ -26,12 +25,11 @@ export default class AadCommentService implements ICommentService {
                      context.pageContext.web.id;
 
                      var aadClient : AadHttpClient =
-            new AadHttpClient(serviceScope, clientId);
+            new AadHttpClient(serviceScope, clientOrFunctionId);
 
         const body: ICommentServiceBody = {
             "siteId": siteId,
-            "comment": comment.text,
-            "username": "Bob"
+            "comment": comment.text
         };
 
         const headers: HeadersInit = new Headers();
@@ -44,7 +42,11 @@ export default class AadCommentService implements ICommentService {
                 body: JSON.stringify(body)
             })
             .then((response) => {
-                resolve();
+                if (response.status == 200) {
+                    resolve();
+                } else {
+                    reject(`Error: ${response.status}: ${response.statusText}`);
+                }
             })
             .catch((error) => {
                 reject(error);

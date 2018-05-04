@@ -4,6 +4,7 @@ import { IComment } from '../model/IComment';
 import { ICommentService } from './ICommentService';
 import MockCommentService from './MockCommentService';
 import AadCommentService from './AadCommentService';
+import FuncCommentService from './FuncCommentService';
 
 import { EnvironmentType } from '@microsoft/sp-core-library';
 
@@ -16,7 +17,7 @@ export class CommentServiceFactory {
         } else if (isAad) {
             return new AadCommentService();
         } else {
-            return null;
+            return new FuncCommentService();
         }
     }
 }

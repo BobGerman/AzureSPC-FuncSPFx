@@ -5,7 +5,7 @@ import { IComment } from '../model/IComment';
 export interface ICommentService {
     addComment(context: IWebPartContext,
                 serviceScope: ServiceScope,
-                clientId: string,
+                clientOrFunctionId: string,
                 endpointUrl: string,
                 comment: IComment):
         Promise<void | string>;

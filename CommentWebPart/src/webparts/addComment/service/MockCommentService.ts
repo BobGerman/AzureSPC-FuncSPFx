@@ -7,7 +7,7 @@ export default class MockCommentService implements ICommentService {
 
     public addComment(context: IWebPartContext,
                       serviceScope: ServiceScope,
-                      clientId: string,
+                      clientOrFunctionId: string,
                       endpointUrl: string,
                       comment: IComment) : Promise<void | string> {
 

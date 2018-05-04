@@ -2,42 +2,45 @@ import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { ServiceScope } from '@microsoft/sp-core-library';
 import { IComment } from '../model/IComment';
 import { ICommentService } from './ICommentService';
-import { AadHttpClient } from '@microsoft/sp-http';
+import { HttpClient } from '@microsoft/sp-http';
 
 interface ICommentServiceBody {
-    siteId: string;
+    siteUrl: string;
     comment: string;
-    username: string;
 }
 
 export default class FuncCommentService implements ICommentService {
 
     public addComment(context: IWebPartContext,
                       serviceScope: ServiceScope,
-                      clientId: string,
+                      clientOrFunctionId: string,
                       endpointUrl: string,
                       comment: IComment) : Promise<void | string> {
 
-        var aadClient : AadHttpClient =
-            new AadHttpClient(serviceScope, clientId);
+        var httpClient : HttpClient = new HttpClient(serviceScope);
+        var siteUrl = context.pageContext.web.absoluteUrl;
 
         var body: ICommentServiceBody = {
-            "siteId": "bgtest18.sharepoint.com,e35205f3-2461-4083-8ba0-da6ef589a781,64aaa6bd-ecf3-4c9d-9a60-4f56cffed7b5",
-            "comment": comment.text,
-            "username": "Bob"
+            "siteUrl": siteUrl,
+            "comment": comment.text
         };
 
         const headers: HeadersInit = new Headers();
         headers.append("Content-Type", "application/json");
+        headers.append("x-functions-key", clientOrFunctionId);
 
         return new Promise<void | string> ((resolve, reject) => {
 
-            aadClient.post(endpointUrl, AadHttpClient.configurations.v1, {
+            httpClient.post(endpointUrl, HttpClient.configurations.v1, {
                 headers: headers,
                 body: JSON.stringify(body)
             })
             .then((response) => {
-                resolve();
+                if (response.status == 200) {
+                    resolve();
+                } else {
+                    reject(`Error ${response.status}: ${response.statusText}`);
+                }
             })
             .catch((error) => {
                 reject(error);
