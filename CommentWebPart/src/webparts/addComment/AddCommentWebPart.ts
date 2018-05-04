@@ -72,11 +72,11 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
                 PropertyPaneTextField('clientId', {
                   label: strings.ClientIdFieldLabel
                 }),
-                PropertyPaneTextField('endpointUrl', {
-                  label: strings.EndpointUrlFieldLabel
-                }),
                 PropertyPaneTextField('functionCode', {
                   label: strings.FunctionCodeFieldLabel
+                }),
+                PropertyPaneTextField('endpointUrl', {
+                  label: strings.EndpointUrlFieldLabel
                 })
               ]
             }            

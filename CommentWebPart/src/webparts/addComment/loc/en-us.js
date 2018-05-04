@@ -5,7 +5,7 @@ define([], function() {
     "ServiceGroupName": "Comment service settings",
     "TitleFieldLabel": "Title",
     "DescriptionFieldLabel": "Description",
-    "ClientIdFieldLabel": "Client ID",
+    "ClientIdFieldLabel": "Client ID (for Azure AD auth)",
     "EndpointUrlFieldLabel": "Endpoint URL",
     "FunctionCodeFieldLabel": "Function code (for Function auth)"
   }
