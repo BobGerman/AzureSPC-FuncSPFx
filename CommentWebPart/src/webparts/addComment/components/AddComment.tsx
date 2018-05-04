@@ -29,6 +29,10 @@ export default class AddComment extends React.Component<IAddCommentProps, IAddCo
                         commentText={ this.state.commentText }
                         onAddComment={ (c) => {
                           if (c) {
+                            this.setState({
+                              commentText: c,
+                              message: "(sending)"
+                            })
                             this.props.commentService.addComment(
                               this.props.context, this.props.serviceScope,
                               this.props.clientId, this.props.endpointUrl,
@@ -51,6 +55,18 @@ export default class AddComment extends React.Component<IAddCommentProps, IAddCo
                           }
                         }
                       }
+                      onChangeComment={ (c) => {
+                        this.setState({
+                          commentText: c,
+                          message: ""
+                        });
+                      } }
+                      onCancel={ () => {
+                        this.setState({
+                          commentText: "",
+                          message: ""
+                        });
+                      } }
                       message={ this.state.message } />
       </div>
     );
