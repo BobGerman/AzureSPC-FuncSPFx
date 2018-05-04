@@ -32,7 +32,7 @@ export default class AddComment extends React.Component<IAddCommentProps, IAddCo
                             this.setState({
                               commentText: c,
                               message: "(sending)"
-                            })
+                            });
                             this.props.commentService.addComment(
                               this.props.context, this.props.serviceScope,
                               this.props.clientId, this.props.endpointUrl,

@@ -10,7 +10,7 @@ interface ICommentServiceBody {
     username: string;
 }
 
-export default class CommentService implements ICommentService {
+export default class AadCommentService implements ICommentService {
 
     public addComment(context: IWebPartContext,
                       serviceScope: ServiceScope,

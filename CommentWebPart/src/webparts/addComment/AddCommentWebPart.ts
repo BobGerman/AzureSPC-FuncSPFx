@@ -25,7 +25,8 @@ export interface IAddCommentWebPartProps {
 export default class AddCommentWebPart extends BaseClientSideWebPart<IAddCommentWebPartProps> {
 
   public render(): void {
-    const svc = CommentServiceFactory.getCommentService(Environment.type);
+    const isAad = (this.properties.clientId != "");
+    const svc = CommentServiceFactory.getCommentService(Environment.type, isAad);
     const message = "";
 
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
