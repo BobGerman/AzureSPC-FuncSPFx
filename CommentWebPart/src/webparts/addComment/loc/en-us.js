@@ -6,6 +6,7 @@ define([], function() {
     "TitleFieldLabel": "Title",
     "DescriptionFieldLabel": "Description",
     "ClientIdFieldLabel": "Client ID",
-    "EndpointUrlFieldLabel": "Endpoint URL"
+    "EndpointUrlFieldLabel": "Endpoint URL",
+    "FunctionCodeFieldLabel": "Function code (for Function auth)"
   }
 });

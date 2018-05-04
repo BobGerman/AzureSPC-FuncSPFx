@@ -6,6 +6,7 @@ declare interface IAddCommentWebPartStrings {
   DescriptionFieldLabel: string;
   ClientIdFieldLabel: string;
   EndpointUrlFieldLabel: string;
+  FunctionCodeFieldLabel: string;
 }
 
 declare module 'AddCommentWebPartStrings' {

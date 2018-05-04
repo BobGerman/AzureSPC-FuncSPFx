@@ -19,6 +19,7 @@ export interface IAddCommentWebPartProps {
   description: string;
   clientId: string;
   endpointUrl: string;
+  functionCode: string;
 }
 
 export default class AddCommentWebPart extends BaseClientSideWebPart<IAddCommentWebPartProps> {
@@ -73,6 +74,9 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
                 }),
                 PropertyPaneTextField('endpointUrl', {
                   label: strings.EndpointUrlFieldLabel
+                }),
+                PropertyPaneTextField('functionCode', {
+                  label: strings.FunctionCodeFieldLabel
                 })
               ]
             }            
