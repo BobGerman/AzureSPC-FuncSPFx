@@ -10,7 +10,7 @@
   .row {
     @include ms-Grid-row;
     @include ms-fontColor-white;
-    background-color: $ms-color-themeDark;
+    background-color: $ms-color-purpleDark;
     padding: 20px;
   }
 
@@ -79,7 +79,7 @@
 
     // Primary Button
     min-width: 80px;
-    background-color: $ms-color-themeDark;
+    background-color: $ms-color-neutralSecondary;
     border-color: $ms-color-white;
     color: $ms-color-white;
 
