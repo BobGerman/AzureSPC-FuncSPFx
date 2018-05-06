@@ -26,6 +26,7 @@ export default class AddComment extends React.Component<IAddCommentProps, IAddCo
       <div>
         <AddCommentForm title={ this.props.title } 
                         description={ this.props.description }
+                        caption={ this.props.caption }
                         commentText={ this.state.commentText }
                         onAddComment={ (c) => {
                           if (c) {

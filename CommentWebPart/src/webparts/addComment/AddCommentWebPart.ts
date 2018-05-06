@@ -27,7 +27,7 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
   public render(): void {
     const isAad = (this.properties.clientId != "");
     const svc = CommentServiceFactory.getCommentService(Environment.type, isAad);
-    const message = "";
+    const caption = this.getCaption();
 
     const element: React.ReactElement<IAddCommentProps > = React.createElement(
       AddComment, {
@@ -36,6 +36,7 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
         commentService: svc,
         title: this.properties.title,
         description: this.properties.description,
+        caption: caption,
         clientId: this.properties.clientId || this.properties.functionCode,
         endpointUrl: this.properties.endpointUrl
       }
@@ -85,5 +86,23 @@ export default class AddCommentWebPart extends BaseClientSideWebPart<IAddComment
         }
       ]
     };
+  }
+
+  private getCaption (): string {
+    let result: string = "";
+    if (!this.properties.endpointUrl) {
+      result = "Please configure the web part";
+    } else {
+      if (!this.properties.clientId && !this.properties.functionCode) {
+        result = "URL only (Logic app)";
+      } else if (this.properties.clientId && !this.properties.functionCode) {
+        result = "Azure AD Authentication";
+      } else if (!this.properties.clientId && this.properties.functionCode) {
+        result = "API key (Azure Function authN)";
+      } else {
+        result = "Invalid configuration";
+      }
+    } 
+    return result;
   }
 }

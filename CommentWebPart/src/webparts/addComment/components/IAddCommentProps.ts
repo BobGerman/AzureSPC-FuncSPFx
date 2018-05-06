@@ -8,6 +8,7 @@ export interface IAddCommentProps {
     commentService: ICommentService;
     title: string;
     description: string;
+    caption: string;
     clientId: string;
     endpointUrl: string;
   }

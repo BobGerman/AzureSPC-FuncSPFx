@@ -34,6 +34,7 @@ export default class AddComment extends React.Component<IAddCommentFormProps, { 
                 <button onClick={ this.props.onCancel } className={ styles.button2 }>Cancel</button>
               </p>
               <div>{this.props.message}</div>
+              <div>{this.props.caption}</div>
             </div>
           </div>
         </div>

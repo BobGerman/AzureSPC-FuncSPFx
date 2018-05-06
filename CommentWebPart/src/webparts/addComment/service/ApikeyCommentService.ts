@@ -9,7 +9,7 @@ interface ICommentServiceBody {
     comment: string;
 }
 
-export default class FuncCommentService implements ICommentService {
+export default class ApikeyCommentService implements ICommentService {
 
     public addComment(context: IWebPartContext,
                       serviceScope: ServiceScope,
@@ -27,7 +27,9 @@ export default class FuncCommentService implements ICommentService {
 
         const headers: HeadersInit = new Headers();
         headers.append("Content-Type", "application/json");
-        headers.append("x-functions-key", clientOrFunctionId);
+        if (clientOrFunctionId) {
+            headers.append("x-functions-key", clientOrFunctionId);
+        }
 
         return new Promise<void | string> ((resolve, reject) => {
 
