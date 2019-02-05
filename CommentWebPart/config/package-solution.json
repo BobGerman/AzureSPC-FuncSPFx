@@ -10,6 +10,10 @@
       {
         "resource": "SPC-AuthenticatedFunctions",
         "scope": "user_impersonation"
+      },
+      {
+        "resource": "BGFuncV2JS",
+        "scope": "user_impersonation"
       }
     ]
   },
